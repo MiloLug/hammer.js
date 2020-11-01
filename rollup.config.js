@@ -1,10 +1,17 @@
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel';
 
-export default {
-  entry: 'src/main.js',
-  format: 'es',
-  plugins: [ babel({ exclude: 'node_modules/**' }) ],
-  dest: 'hammer.js',
-  intro: " (function(window, document, exportName, undefined) { \n'use strict';",
-  outro: "})(window, document, 'Hammer');"
+const config = {
+	input: 'src/main.js',
+	output: {
+		dir: 'output',
+		format: 'esm'
+	},
+	plugins: [babel({
+		babelHelpers: 'bundled',
+		exclude: 'node_modules/**'
+	})]
+	// intro: " (function(window, document, exportName, undefined) { \n'use strict';",
+ 	// outro: "})(window, document, 'Hammer');"
 };
+
+export default config;
